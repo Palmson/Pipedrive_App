@@ -21,11 +21,10 @@ const customFieldKeys = {
   technician: process.env.TECH_FIELD
 };
 
-const createDeal = (formData) => {
-  const apiUrl = `https://${companyDomain}.pipedrive.com/api/v1/deals?api_token=${apiToken}`;
+const updateDeal = (dealId, formData) => {
+  const apiUrl = `https://${companyDomain}.pipedrive.com/api/v1/deals/${dealId}?api_token=${apiToken}`;
 
   const dealData = {
-    title: "Details",
     custom_fields: {
       [customFieldKeys.client]: `${formData.firstName} ${formData.lastName}`,
       [customFieldKeys.phone]: formData.phone,
@@ -45,11 +44,11 @@ const createDeal = (formData) => {
     }
   };
 
-  return axios.post(apiUrl, dealData, {
+  return axios.put(apiUrl, dealData, {
     headers: {
       'Content-Type': 'application/json'
     }
   });
 };
 
-module.exports = { createDeal };
+module.exports = { updateDeal };
