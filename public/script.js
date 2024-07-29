@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('deal-id').value = 2; 
+  document.getElementById('deal-id').value = 3; 
 });
 
 document.getElementById('job-form').addEventListener('submit', async function(event) {
