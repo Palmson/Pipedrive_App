@@ -1,6 +1,8 @@
 const express = require('express');
-const app = express();
 const path = require('path');
+const helmet = require('helmet');
+
+const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -9,13 +11,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Example route to render the form
-app.get('/form/:dealId', (req, res) => {
-  const { dealId } = req.params;
-  res.render('index', { dealId });
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      imgSrc: ["'self'", 'data:'],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+    },
+  })
+);
+
+app.get('/', (req, res) => {
+  res.render('index', { dealId: null }); 
 });
 
-// Your existing routes...
 const submitRouter = require('./routes/submit');
 app.use('/submit', submitRouter);
 
