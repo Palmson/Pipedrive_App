@@ -11,6 +11,7 @@ async function updateDeal(dealId, formData) {
     );
     return response.data;
   } catch (error) {
+    console.error('Pipedrive API error:', error.response ? error.response.data : error.message); 
     throw new Error(`Pipedrive API Error: ${error.response ? error.response.data.error : error.message}`);
   }
 }
