@@ -1,23 +1,25 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const submitRoute = require('./routes/submit');
-
-require('dotenv').config();
-
 const app = express();
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../public')));
-app.set('views', path.join(__dirname, '../views'));
-app.set('view engine', 'ejs');
+const path = require('path');
 
-app.get('/', (req, res) => {
-  res.render('index');
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Example route to render the form
+app.get('/form/:dealId', (req, res) => {
+  const { dealId } = req.params;
+  res.render('index', { dealId });
 });
 
-app.use('/submit', submitRoute);
+// Your existing routes...
+const submitRouter = require('./routes/submit');
+app.use('/submit', submitRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
