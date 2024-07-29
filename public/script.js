@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', async () => {
-  document.getElementById('deal-id').value = '1'; 
-});
-
+// document.addEventListener('DOMContentLoaded', async () => {
+//   document.getElementById('deal-id').value = '1'; 
+// });
+document.getElementById('deal-id').value = 1;
 document.getElementById('job-form').addEventListener('submit', async function(event) {
   event.preventDefault();
   const formData = {

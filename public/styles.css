@@ -13,7 +13,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    width: 80%;
+    min-width: 500px;
     background: #fff;
     padding: 1rem;
     border-radius: 8px;
