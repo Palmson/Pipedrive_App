@@ -23,7 +23,7 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-  res.render('index', { dealId: null }); 
+  res.render('index', { dealId: null });
 });
 
 const submitRouter = require('./routes/submit');
