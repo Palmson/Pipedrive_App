@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const PIPEDRIVE_API_TOKEN = process.env.PIPEDRIVE_API_TOKEN;
+const PIPEDRIVE_API_TOKEN = process.env.API_TOKEN;
 const PIPEDRIVE_API_BASE_URL = 'https://api.pipedrive.com/v1';
 
 async function updateDeal(dealId, formData) {
